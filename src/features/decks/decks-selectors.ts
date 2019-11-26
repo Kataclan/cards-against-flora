@@ -1,4 +1,5 @@
-import { RootState } from '../../store/types';
+import { State } from '../../store/types';
 
-export const getDecks = (state: RootState) => state.decks.decks;
-export const getIsFetchingDecks = (state: RootState) => state.decks.isFetching;
+export const getDecks = (state: State) => state.decks.decks;
+
+export const getIsFetchingDecks = (state: State) => state.decks.isFetching;

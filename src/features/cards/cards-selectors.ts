@@ -1,7 +1,7 @@
-import { RootState } from '../../store/types';
+import { State } from '../../store/types';
 
-export const getCards = (state: RootState) => state.cards.cards;
+export const getCards = (state: State) => state.cards.cards;
 
-export const getIsFetchingCards = (state: RootState) => state.cards.isFetching;
+export const getIsFetchingCards = (state: State) => state.cards.isFetching;
 
-export const getCard = (state: RootState, cardId:string) => getCards(state).get(cardId); 
+export const getCard = (state: State, cardId:string) => getCards(state).get(cardId); 

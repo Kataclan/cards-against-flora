@@ -1,16 +1,16 @@
-import { combineReducers } from 'redux';
-import { connectRouter } from 'connected-react-router';
 import { History } from 'history';
-import decksReducer from '../features/decks/decks-reducer';
-import cardsReducer from '../features/cards/cards-reducer';
+import { combineReducers } from 'redux-immutable';
+import { connectRouter } from 'connected-react-router';
+
+// import cardsReducer from '../features/cards/cards-reducer';
 import appReducer from '../features/app/app-reducer';
+import { decksReducer } from '../features/decks/decks-reducer';
 
 const rootReducer = (history: History<any>) =>
   combineReducers({
-    router: connectRouter(history),
     app: appReducer,
     decks: decksReducer,
-    cards: cardsReducer,
-  });
+    router : connectRouter(history)
+  })
 
 export default rootReducer;

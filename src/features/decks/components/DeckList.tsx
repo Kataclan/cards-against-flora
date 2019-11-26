@@ -1,10 +1,10 @@
-import { RootState } from '../../../store/types';
+import { State } from '../../../store/types';
 import React from 'react';
 import { connect } from 'react-redux';
 import * as selectors from '../decks-selectors';
 
-const mapStateToProps = (state: RootState) => ({
-  isLoading: state.decks.isFetching,
+const mapStateToProps = (state: State) => ({
+  isLoading: selectors.getIsFetchingDecks(state),
   decks: selectors.getDecks(state),
 });
 const dispatchProps = {};
@@ -19,7 +19,7 @@ const DeckList: React.FC<Props> = ({
     return <p style={{ textAlign: 'center' }}>Loading decks...</p>;
   }
 
-  if (decks.length === 0) {
+  if (decks.count() === 0) {
     return (
       <p style={{ textAlign: 'center' }}>
         No decks yet, please create new...

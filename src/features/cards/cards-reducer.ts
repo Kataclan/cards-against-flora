@@ -1,36 +1,21 @@
 
-import { Reducer } from 'typesafe-actions';
-import { ActionTypes, Actions, Card } from "./cards-types";
+import { ActionTypes, Actions, Card, CardsState } from "./cards-types";
 import { combineReducers } from 'redux';
-import { Map } from 'immutable';
+import { Map, fromJS } from 'immutable';
 
-export const cards:Reducer<Map<string, Card>, ActionTypes> = (
-  state = Map(),
-  action: ActionTypes,
-) => {
-  switch(action.type){
-		case Actions.ADD_CARD:
-			return state.update(action.payload.card.uid, () => action.payload.card);
-		case Actions.DELETE_CARD:
-			return state.remove(action.payload.uid);
-    case Actions.FETCH_CARDS_SUCCESS:
-			action.payload.cards.forEach(card => state.set(card.uid, card));
-			return state;
-		case Actions.UPDATE_CARD:
-			return state.setIn(action.payload.card.uid, action.payload.card);
-    default: return state;
-  }
-};
+const initialState:CardsState = fromJS({
+	isFetching: false,
+	cards: Map(),
+});
 
-export const isFetching:Reducer<boolean, ActionTypes> = (
+export const isFetchingReducer = (
 	state = false,
 	action: ActionTypes,
-) => {
+): boolean => {
 	switch (action.type) {
     case Actions.FETCH_CARDS_REQUEST:
       return true;
     case Actions.FETCH_CARDS_SUCCESS:
-			return false;
 		case Actions.FETCH_CARDS_ERROR:
 			return false;
 		default:
@@ -38,7 +23,24 @@ export const isFetching:Reducer<boolean, ActionTypes> = (
 	}
 };
 
-export default combineReducers({
-	isFetching: isFetching,
-	cards: cards,
-});
+export const cardsReducer = (
+  state = initialState.cards,
+  action: ActionTypes,
+): Map<string, Card> => {
+  switch(action.type){
+		case Actions.ADD_CARD:
+		case Actions.UPDATE_CARD:
+			return state.update(action.payload.card.uid, () => action.payload.card);
+		case Actions.DELETE_CARD:
+			return state.remove(action.payload.uid);
+    case Actions.FETCH_CARDS_SUCCESS:
+			action.payload.cards.forEach(card => state.set(card.uid, card));
+			return state;
+    default: return state;
+  }
+};
+
+export default combineReducers<CardsState>(fromJS({
+	isFetching: isFetchingReducer,
+	cards: cardsReducer,
+}));

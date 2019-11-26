@@ -1,10 +1,21 @@
-import { StateType, ActionType } from 'typesafe-actions';
+import { ActionType } from 'typesafe-actions';
+import { AppState } from '../features/app/app-types';
+import { CardsState } from '../features/cards/cards-types';
+import { DecksState } from '../features/decks/decks-types';
+import { RouterState } from 'connected-react-router';
 
-export type Store = StateType<typeof import('./index').default>;
-export type RootState = StateType<
-    ReturnType<typeof import('./root-reducer').default>
-  >;
-export type RootAction = ActionType<typeof import('./root-action').default>;
+export type AllowedStateTypes = 
+  AppState |
+  CardsState |
+  DecksState |
+  RouterState;
+
+export interface State extends Record<string, AllowedStateTypes> {
+  app: AppState,
+  cards: CardsState,
+  decks: DecksState,
+  router: RouterState,
+};
 
 declare module 'typesafe-actions' {
   interface Types {
