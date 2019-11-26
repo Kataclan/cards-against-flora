@@ -12,12 +12,7 @@ export type StateStructure = {
   router: RouterState,
 };
 
-export interface State extends Record<StateStructure> {
-  app: AppState,
-  cards: CardsState,
-  decks: DecksState,
-  router: RouterState,
-};
+export type State = Record<StateStructure>;
 
 declare module 'typesafe-actions' {
   interface Types {

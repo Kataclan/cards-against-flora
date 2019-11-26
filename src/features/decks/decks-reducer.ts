@@ -1,7 +1,7 @@
 
-import { ActionTypes, Actions, Deck, DecksState } from "./decks-types";
+import { ActionTypes, Actions, Deck } from "./decks-types";
 import { combineReducers } from 'redux-immutable';
-import { Map, fromJS } from 'immutable';
+import { Map } from 'immutable';
 
 export const isFetchingReducer = (
 	state = false,
@@ -35,7 +35,7 @@ export const decksReducer = (
   }
 };
 
-export default combineReducers<DecksState>(fromJS({
+export default combineReducers(({
 	isFetching: isFetchingReducer,
 	decks: decksReducer,
 }));

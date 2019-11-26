@@ -1,13 +1,8 @@
 import { Actions, ActionTypes } from './app-types';
-import { fromJS } from 'immutable';
-// import { fromJS } from 'immutable';
+import { combineReducers } from 'redux-immutable';
 
-// const initialState:AppState = fromJS({
-// 	isLoading: false,
-// });
-
-export const reducer = (
-	state = fromJS({ isLoading: false }),
+export const isLoadingReducer = (
+	state = true,
 	action: ActionTypes,
 ): boolean => {
 	switch (action.type) {
@@ -20,4 +15,6 @@ export const reducer = (
 	}
 };
 
-export default reducer;
+export default combineReducers({
+	isLoading: isLoadingReducer
+});

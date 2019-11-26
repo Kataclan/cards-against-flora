@@ -1,3 +1,5 @@
 import { State } from '../../store/types';
 
-export const getIsLoadingApp = (state: State) => state.get('app');
+export const getState = (state: State) => state.get('app');
+
+export const getIsLoadingApp = (state: State) => getState(state).get('isLoading');
