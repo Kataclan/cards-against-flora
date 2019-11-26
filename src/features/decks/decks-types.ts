@@ -63,12 +63,9 @@ export type ActionTypes =
   IActionFetchDecksError |
   IActionUpdateDeck;
 
-export type DecksState = {
+export type State = {
   isFetching: boolean;
   decks: Map<string, Deck>;
 }
 
-export interface State extends Record<DecksState> {
-  isFetching: boolean;
-  decks: Map<string, Deck>;
-};
+export type DecksState = Record<State>;

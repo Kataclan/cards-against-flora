@@ -1,12 +1,7 @@
 
-import { ActionTypes, Actions, Card, CardsState } from "./cards-types";
-import { combineReducers } from 'redux';
-import { Map, fromJS } from 'immutable';
-
-const initialState:CardsState = fromJS({
-	isFetching: false,
-	cards: Map(),
-});
+import { ActionTypes, Actions, Card } from "./cards-types";
+import { combineReducers } from 'redux-immutable';
+import { Map } from 'immutable';
 
 export const isFetchingReducer = (
 	state = false,
@@ -24,7 +19,7 @@ export const isFetchingReducer = (
 };
 
 export const cardsReducer = (
-  state = initialState.cards,
+  state = Map<string, Card>(),
   action: ActionTypes,
 ): Map<string, Card> => {
   switch(action.type){
@@ -40,7 +35,7 @@ export const cardsReducer = (
   }
 };
 
-export default combineReducers<CardsState>(fromJS({
+export default combineReducers(({
 	isFetching: isFetchingReducer,
 	cards: cardsReducer,
 }));

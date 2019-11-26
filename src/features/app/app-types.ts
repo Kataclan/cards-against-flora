@@ -1,4 +1,5 @@
 import { Action } from "typesafe-actions";
+import { Record } from 'immutable';
 
 export enum Actions {
   START_INIT_APP = '@@app/START_INIT_APP',
@@ -17,8 +18,8 @@ export type ActionTypes =
   IActionStartInitApp |
   IActionFinishInitApp;
 
-export type AppStateTypes = boolean;
-
-export interface AppState extends Record<string, AppStateTypes>{
+export type State = {
   isLoading: boolean;
-}
+};
+
+export type AppState = Record<State>;

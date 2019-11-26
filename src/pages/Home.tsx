@@ -6,9 +6,11 @@ import Main from '../layouts/Main';
 import * as appSelectors from '../features/app/app-selectors';
 import { LoadingComponent } from '../components/LoadingFlower';
 
-const mapStateToProps = (state: State) => ({
-  isLoadingApp: appSelectors.getIsLoadingApp(state),
-});
+const mapStateToProps = (state: State) => {
+  return ({
+    isLoadingApp: appSelectors.getIsLoadingApp(state),  
+  })
+;}
 
 type Props = ReturnType<typeof mapStateToProps>;
 
