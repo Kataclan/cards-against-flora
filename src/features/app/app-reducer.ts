@@ -1,12 +1,15 @@
-
-import { Reducer } from 'typesafe-actions';
-import { combineReducers } from 'redux';
 import { Actions, ActionTypes } from './app-types';
+import { fromJS } from 'immutable';
+// import { fromJS } from 'immutable';
 
-export const isLoading:Reducer<boolean, ActionTypes> = (
-	state = true,
+// const initialState:AppState = fromJS({
+// 	isLoading: false,
+// });
+
+export const reducer = (
+	state = fromJS({ isLoading: false }),
 	action: ActionTypes,
-) => {
+): boolean => {
 	switch (action.type) {
     case Actions.START_INIT_APP:
       return true;
@@ -17,6 +20,4 @@ export const isLoading:Reducer<boolean, ActionTypes> = (
 	}
 };
 
-export default combineReducers({
-	isLoading: isLoading,
-});
+export default reducer;

@@ -1,36 +1,21 @@
 
-import { Reducer } from 'typesafe-actions';
-import { ActionTypes, Actions, Deck } from "./decks-types";
+import { ActionTypes, Actions, Deck, DecksState } from "./decks-types";
 import { combineReducers } from 'redux';
-import { Map } from 'immutable';
+import { Map, fromJS } from 'immutable';
 
-export const decks:Reducer<Map<string, Deck>, ActionTypes> = (
-  state = Map(),
-  action: ActionTypes,
-): Map<string, Deck> => {
-  switch(action.type){
-		case Actions.ADD_DECK:
-			return state.update(action.payload.deck.uid, () => action.payload.deck);
-		case Actions.DELETE_DECK:
-			return state.remove(action.payload.uid);
-    case Actions.FETCH_DECKS_SUCCESS:
-			action.payload.decks.forEach(deck => state.set(deck.uid, deck));
-			return state;
-		case Actions.UPDATE_DECK:
-			return state.setIn(action.payload.deck.uid, action.payload.deck);
-    default: return state;
-  }
-};
+const initialState:DecksState = fromJS({
+	isFetching: false,
+	decks: Map(),
+});
 
-export const isFetching:Reducer<boolean, ActionTypes> = (
+export const isFetchingReducer = (
 	state = false,
 	action: ActionTypes,
-) => {
+): boolean => {
 	switch (action.type) {
     case Actions.FETCH_DECKS_REQUEST:
       return true;
     case Actions.FETCH_DECKS_SUCCESS:
-			return false;
 		case Actions.FETCH_DECKS_ERROR:
 			return false;
 		default:
@@ -38,7 +23,24 @@ export const isFetching:Reducer<boolean, ActionTypes> = (
 	}
 };
 
-export default combineReducers({
-	isFetching: isFetching,
-	decks: decks,
-});
+export const decksReducer = (
+  state = initialState.decks,
+  action: ActionTypes,
+): Map<string, Deck> => {
+  switch(action.type){
+		case Actions.ADD_DECK:
+		case Actions.UPDATE_DECK:
+			return state.update(action.payload.deck.uid, () => action.payload.deck);
+		case Actions.DELETE_DECK:
+			return state.remove(action.payload.uid);
+    case Actions.FETCH_DECKS_SUCCESS:
+			action.payload.decks.forEach(deck => state.set(deck.uid, deck));
+			return state;
+    default: return state;
+  }
+};
+
+export default combineReducers<DecksState>(fromJS({
+	isFetching: isFetchingReducer,
+	decks: decksReducer,
+}));

@@ -17,6 +17,8 @@ export type ActionTypes =
   IActionStartInitApp |
   IActionFinishInitApp;
 
-export type State = {
-  isLoadingApp: boolean
+export type AppStateTypes = boolean;
+
+export interface AppState extends Record<string, AppStateTypes>{
+  isLoading: boolean;
 }

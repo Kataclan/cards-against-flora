@@ -1,4 +1,5 @@
 import { Action } from "typesafe-actions";
+import { Map } from 'immutable';
 
 export enum CardTypes {
   Fresh,
@@ -85,7 +86,11 @@ export type ActionTypes =
   IActionSetCards |
   IActionUpdateCard;
 
-export type State = {
-  isFetching: boolean,
-  cards: Card[],
-}
+export type CardsStateTypes =
+  boolean |
+  Map<string, Card>;
+
+export interface CardsState extends Record<string, CardsStateTypes> {
+  isFetching: boolean;
+  cards: Map<string, Card>;
+};
