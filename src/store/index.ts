@@ -2,7 +2,7 @@ import { applyMiddleware, createStore } from 'redux';
 import { History } from 'history';
 
 import { routerMiddleware } from 'connected-react-router/immutable';
-import createLoggerMiddleWare from 'redux-logger';
+import { createLogger } from 'redux-logger';
 import createSagaMiddleWare from 'redux-saga';
 
 import { composeEnhancers } from './utils';
@@ -11,7 +11,7 @@ import rootReducer from './root-reducer';
 
 export default function configureStore(history: History) {
   //Init middlewares
-  const loggerMiddleWare = createLoggerMiddleWare;
+  const loggerMiddleWare = createLogger({ collapsed: true });
   const sagaMiddleware = createSagaMiddleWare();
   const middlewares = [routerMiddleware(history), loggerMiddleWare, sagaMiddleware];
 

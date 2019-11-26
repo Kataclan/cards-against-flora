@@ -1,12 +1,7 @@
 
 import { ActionTypes, Actions, Deck, DecksState } from "./decks-types";
-import { combineReducers } from 'redux';
+import { combineReducers } from 'redux-immutable';
 import { Map, fromJS } from 'immutable';
-
-const initialState:DecksState = fromJS({
-	isFetching: false,
-	decks: Map(),
-});
 
 export const isFetchingReducer = (
 	state = false,
@@ -24,7 +19,7 @@ export const isFetchingReducer = (
 };
 
 export const decksReducer = (
-  state = initialState.decks,
+  state = Map<string, Deck>(),
   action: ActionTypes,
 ): Map<string, Deck> => {
   switch(action.type){
