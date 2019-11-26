@@ -12,7 +12,7 @@ const mapStateToProps = (state: State) => ({
 
 type Props = ReturnType<typeof mapStateToProps>;
 
-const Home = (props:Props) =>
+const Home:React.FC<Props> = (props:Props) =>
   props.isLoadingApp
   ? <LoadingComponent full={true} />
   : (

@@ -1,5 +1,5 @@
 import { Action } from "typesafe-actions";
-import { Map } from 'immutable';
+import { Map, Record } from 'immutable';
 
 export interface Deck extends BaseObj {
   displayName: string;
@@ -63,11 +63,12 @@ export type ActionTypes =
   IActionFetchDecksError |
   IActionUpdateDeck;
 
-export type DecksStateTypes =
-  boolean |
-  Map<string, Deck>;
+export type DecksState = {
+  isFetching: boolean;
+  decks: Map<string, Deck>;
+}
 
-export interface DecksState extends Record<string, DecksStateTypes> {
+export interface State extends Record<DecksState> {
   isFetching: boolean;
   decks: Map<string, Deck>;
 };

@@ -1,5 +1,5 @@
 import { State } from '../../store/types';
 
-export const getDecks = (state: State) => state.decks.decks;
-
-export const getIsFetchingDecks = (state: State) => state.decks.isFetching;
+export const get = (state: State) => state.get('decks');
+export const getDecks = (state: State) => get(state).decks
+export const getIsFetchingDecks = (state: State) => get(state).isFetching;

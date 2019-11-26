@@ -6,6 +6,7 @@ import { Switch, Route } from 'react-router';
 import { getPath } from './router-paths';
 import configureStore from '../store';
 import { createBrowserHistory } from 'history';
+import Home from '../pages/Home';
 
 export const history = createBrowserHistory();
 export const store = configureStore(history);
@@ -16,7 +17,7 @@ class AppRouter extends Component {
       <Provider store={store}>
         <ConnectedRouter history={history}>
           <Switch>
-            <Route exact path={getPath('home')} render={() => <div />} />
+            <Route exact path={getPath('home')} render={() => <Home />} />
           </Switch>
         </ConnectedRouter>
       </Provider>

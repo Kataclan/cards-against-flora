@@ -7,6 +7,7 @@ const mapStateToProps = (state: State) => ({
   isLoading: selectors.getIsFetchingDecks(state),
   decks: selectors.getDecks(state),
 });
+
 const dispatchProps = {};
 
 type Props = ReturnType<typeof mapStateToProps> & typeof dispatchProps;
