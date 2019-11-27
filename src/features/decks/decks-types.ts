@@ -1,4 +1,4 @@
-import { Action } from "typesafe-actions";
+import { Action } from 'typesafe-actions';
 import { Map, Record } from 'immutable';
 
 export interface Deck extends BaseObj {
@@ -16,56 +16,56 @@ export enum Actions {
   UPDATE_DECK = '@@decks/UPDATE_DECK',
 }
 
-export interface IActionAddDeck extends Action {
-  type: Actions.ADD_DECK,
+export interface ActionAddDeck extends Action {
+  type: Actions.ADD_DECK;
   payload: {
     deck: Deck;
-  }
+  };
 }
 
-export interface IActionDeleteDeck extends Action {
-  type: Actions.DELETE_DECK,
+export interface ActionDeleteDeck extends Action {
+  type: Actions.DELETE_DECK;
   payload: {
     uid: string;
-  }
+  };
 }
 
-export interface IActionFetchDecksRequest extends Action {
+export interface ActionFetchDecksRequest extends Action {
   type: Actions.FETCH_DECKS_REQUEST;
 }
 
-export interface IActionFetchDecksSuccess extends Action {
+export interface ActionFetchDecksSuccess extends Action {
   type: typeof Actions.FETCH_DECKS_SUCCESS;
   payload: {
     decks: Deck[];
-  }
+  };
 }
 
-export interface IActionFetchDecksError extends Action {
+export interface ActionFetchDecksError extends Action {
   type: typeof Actions.FETCH_DECKS_ERROR;
   payload: {
     msg: string;
-  }
+  };
 }
 
-export interface IActionUpdateDeck extends Action {
-  type: Actions.UPDATE_DECK,
+export interface ActionUpdateDeck extends Action {
+  type: Actions.UPDATE_DECK;
   payload: {
     deck: Deck;
-  }
+  };
 }
 
 export type ActionTypes =
-  IActionAddDeck |
-  IActionDeleteDeck |
-  IActionFetchDecksRequest |
-  IActionFetchDecksSuccess |
-  IActionFetchDecksError |
-  IActionUpdateDeck;
+  | ActionAddDeck
+  | ActionDeleteDeck
+  | ActionFetchDecksRequest
+  | ActionFetchDecksSuccess
+  | ActionFetchDecksError
+  | ActionUpdateDeck;
 
 export type State = {
   isFetching: boolean;
   decks: Map<string, Deck>;
-}
+};
 
 export type DecksState = Record<State>;

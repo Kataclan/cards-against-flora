@@ -7,20 +7,14 @@ import * as appSelectors from '../features/app/app-selectors';
 import { LoadingComponent } from '../components/LoadingFlower';
 
 const mapStateToProps = (state: State) => {
-  return ({
-    isLoadingApp: appSelectors.getIsLoadingApp(state),  
-  })
-;}
+  return {
+    isLoadingApp: appSelectors.getIsLoadingApp(state),
+  };
+};
 
 type Props = ReturnType<typeof mapStateToProps>;
 
-const Home:React.FC<Props> = (props:Props) =>
-  props.isLoadingApp
-  ? <LoadingComponent full={true} />
-  : (
-    <Main>
-      HOME
-    </Main>
-  );
+const Home: React.FC<Props> = (props: Props) =>
+  props.isLoadingApp ? <LoadingComponent full={true} /> : <Main>HOME</Main>;
 
 export default connect(mapStateToProps)(Home);

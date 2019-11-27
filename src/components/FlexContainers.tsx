@@ -8,23 +8,19 @@ type FlexContainerProps = {
   vertical?: boolean;
   alignItems?: string;
   justifyContent?: string;
-  alignSelf?:string;
+  alignSelf?: string;
 };
 
 export const FlexContainer = styledTS<FlexContainerProps>(styledComponents.div)`
     display: flex;
-    flex-direction: ${props => props.vertical ? 'column' : 'row' };
-    ${props => props.flex ? `flex: ${props.flex}` : '' };
-    ${props => props.full ? 'width:100%;height:100%;' : '' };
-    ${props => props.alignItems ? `align-items: ${props.alignItems}` : ''};
-    ${props => props.justifyContent ? `justify-content: ${props.justifyContent}` : ''};
-    ${props => props.alignSelf ? `align-self: ${props.alignSelf}` : ''};
+    flex-direction: ${props => (props.vertical ? 'column' : 'row')};
+    ${props => (props.flex ? `flex: ${props.flex}` : '')};
+    ${props => (props.full ? 'width:100%;height:100%;' : '')};
+    ${props => (props.alignItems ? `align-items: ${props.alignItems}` : '')};
+    ${props => (props.justifyContent ? `justify-content: ${props.justifyContent}` : '')};
+    ${props => (props.alignSelf ? `align-self: ${props.alignSelf}` : '')};
 `;
 
-export const FlexVContainer:React.FC<FlexContainerProps> = props => (
-    <FlexContainer {...props} vertical={true}/>
-);
+export const FlexVContainer: React.FC<FlexContainerProps> = props => <FlexContainer {...props} vertical={true} />;
 
-export const FlexHContainer:React.FC<FlexContainerProps> = props => (
-    <FlexContainer {...props} vertical={false}/>
-);
+export const FlexHContainer: React.FC<FlexContainerProps> = props => <FlexContainer {...props} vertical={false} />;

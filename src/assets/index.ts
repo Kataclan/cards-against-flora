@@ -1,4 +1,3 @@
-// @ts-ignore
 import FlowerLoading from './flower_loading.gif';
 
 // GIFS

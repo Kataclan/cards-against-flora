@@ -11,7 +11,7 @@ const rootReducer = (history: History<any>) =>
     app: appReducer,
     decks: decksReducer,
     cards: cardsReducer,
-    router : connectRouter(history)
-  })
+    router: connectRouter(history),
+  });
 
 export default rootReducer;

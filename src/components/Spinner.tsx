@@ -4,7 +4,7 @@ import { GIFFlowerLoading } from '../assets';
 
 export type SpinnerSrcs = typeof GIFFlowerLoading;
 
-export enum SpinnerSizes { 
+export enum SpinnerSizes {
   SMALL = 'SMALL',
   MEDIUM = 'MEDIUM',
   BIG = 'BIG',
