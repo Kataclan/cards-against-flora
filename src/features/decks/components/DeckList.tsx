@@ -12,34 +12,22 @@ const dispatchProps = {};
 
 type Props = ReturnType<typeof mapStateToProps> & typeof dispatchProps;
 
-const DeckList: React.FC<Props> = ({
-  isLoading,
-  decks,
-}) => {
+const DeckList: React.FC<Props> = ({ isLoading, decks }) => {
   if (isLoading) {
     return <p style={{ textAlign: 'center' }}>Loading decks...</p>;
   }
 
   if (decks.count() === 0) {
-    return (
-      <p style={{ textAlign: 'center' }}>
-        No decks yet, please create new...
-      </p>
-    );
+    return <p style={{ textAlign: 'center' }}>No decks yet, please create new...</p>;
   }
 
   return (
     <ul>
       {decks.map(deck => (
-        <li key={deck.uid}>
-          {deck.displayName}
-        </li>
+        <li key={deck.uid}>{deck.displayName}</li>
       ))}
     </ul>
   );
 };
 
-export default connect(
-  mapStateToProps,
-  dispatchProps
-)(DeckList);
+export default connect(mapStateToProps, dispatchProps)(DeckList);

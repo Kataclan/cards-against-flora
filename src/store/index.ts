@@ -19,10 +19,7 @@ export default function configureStore(history: History) {
   const enhancer = composeEnhancers(applyMiddleware(...middlewares));
 
   //Store creation
-  const store = createStore(
-    rootReducer(history),
-    enhancer
-  );
+  const store = createStore(rootReducer(history), enhancer);
 
   //Run sagas
   sagaMiddleware.run(rootSaga);

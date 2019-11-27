@@ -40,6 +40,10 @@ Project status
 - [ ] Components
   - [ ] Decks: Details, List, Form
   - [ ] Cards: Details, List, Form
+
+- [ ] Development
+  - [x] Linter
+  - [ ] Material-UI
   
 - [ ] Tests
 
@@ -88,6 +92,14 @@ Folder Structure Explanation
 
 To initialize the project, run `npm i` and `npm run start`. It will run both server and client apps. Server is an api listening on http://localhost:3001 , while app is served in http://localhost:3000
 
+Other scripts:
+- `npm run server` --> Runs only the API server
+- `npm run client` ---> Runs only client app
+- `npm run test` --> Runs jest tests
+- `npm run test:tsc` ---> Runs jest TS tests
+- `npm run lint` --> Runs linter
+
+
 ### App Description
 
 The main idea is to create an app that allows us to create several Cards Agains Flora Game Decks. Like in Cards Agains Humanity game decks, each card in a Cards Agains Flora's deck can contain both Rotten Cards (as Black Cards in CAH) and Fresh Cards (as White Cards in CAH). The user can create cards, and assign those cards to its previous created decks. Then, it can download or export its decks to print & play!
@@ -110,6 +122,10 @@ I've also used this libraries:
   - typesafe-actions (for typing actions)
   - redux-logger (console logger for redux actions)
 
+For linting and 'prettify' the code, I added esling with typescript pluggin and Prettier, and also a git hook on pre-commit 
+to run this linter before commiting files.
+
+For styling, I used styled-components mixed with React Material UI, with provides me a simple way to do the UI for this project.
 
 
 ### License information

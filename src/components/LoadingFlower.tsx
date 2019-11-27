@@ -8,9 +8,8 @@ type Props = {
   full?: boolean;
 };
 
-export const LoadingComponent:React.FC<Props> = 
-({
-  full,
-}) => (<FlexVContainer full={full ? full : false}>
-  <Spinner src={GIFFlowerLoading}  gifSize={SpinnerSizes.MEDIUM} />
-</FlexVContainer>)
+export const LoadingComponent: React.FC<Props> = ({ full }) => (
+  <FlexVContainer full={full ? full : false}>
+    <Spinner src={GIFFlowerLoading} gifSize={SpinnerSizes.MEDIUM} />
+  </FlexVContainer>
+);

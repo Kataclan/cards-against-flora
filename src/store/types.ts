@@ -6,10 +6,10 @@ import { RouterState } from 'connected-react-router';
 import { Record } from 'immutable';
 
 export type StateStructure = {
-  app: AppState,
-  cards: CardsState,
-  decks: DecksState,
-  router: RouterState,
+  app: AppState;
+  cards: CardsState;
+  decks: DecksState;
+  router: RouterState;
 };
 
 export type State = Record<StateStructure>;

@@ -1,4 +1,4 @@
-import { Action } from "typesafe-actions";
+import { Action } from 'typesafe-actions';
 import { Record } from 'immutable';
 
 export enum Actions {
@@ -6,17 +6,15 @@ export enum Actions {
   FINISH_INIT_APP = '@@app/FINISH_INIT_APP',
 }
 
-export interface IActionStartInitApp extends Action {
+export interface ActionStartInitApp extends Action {
   type: Actions.START_INIT_APP;
 }
 
-export interface IActionFinishInitApp extends Action {
+export interface ActionFinishInitApp extends Action {
   type: Actions.FINISH_INIT_APP;
 }
 
-export type ActionTypes =
-  IActionStartInitApp |
-  IActionFinishInitApp;
+export type ActionTypes = ActionStartInitApp | ActionFinishInitApp;
 
 export type State = {
   isLoading: boolean;

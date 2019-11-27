@@ -1,25 +1,26 @@
-import { Action } from "typesafe-actions";
+import { Action } from 'typesafe-actions';
 import { Map, Record } from 'immutable';
 
 export enum CardTypes {
   Fresh,
-  Rotten
+  Rotten,
 }
 
-export interface ICard extends BaseObj {
+export interface BaseCard extends BaseObj {
   type: CardTypes;
 }
 
-interface IFreshCard extends ICard{
+export interface FreshCard extends BaseCard {
   type: typeof CardTypes.Fresh;
   fillingTxt: string;
 }
-interface IRottenCard extends ICard{
+
+export interface RottenCard extends BaseCard {
   type: typeof CardTypes.Rotten;
   declarationTxt: string;
 }
 
-export type Card = IFreshCard | IRottenCard;
+export type Card = FreshCard | RottenCard;
 
 export enum Actions {
   ADD_CARD = '@@cards/ADD_CARD',
@@ -31,64 +32,64 @@ export enum Actions {
   UPDATE_CARD = '@@cards/UPDATE_CARD',
 }
 
-export interface IActionAddCard extends Action {
-  type: Actions.ADD_CARD,
+export interface ActionAddCard extends Action {
+  type: Actions.ADD_CARD;
   payload: {
-    card: Card
-  }
+    card: Card;
+  };
 }
 
-export interface IActionDeleteCard extends Action {
-  type: Actions.DELETE_CARD,
+export interface ActionDeleteCard extends Action {
+  type: Actions.DELETE_CARD;
   payload: {
-    uid: string
-  }
+    uid: string;
+  };
 }
 
-export interface IActionFetchCardsRequest extends Action {
+export interface ActionFetchCardsRequest extends Action {
   type: Actions.FETCH_CARDS_REQUEST;
 }
 
-export interface IActionFetchCardsSuccess extends Action {
+export interface ActionFetchCardsSuccess extends Action {
   type: typeof Actions.FETCH_CARDS_SUCCESS;
   payload: {
-    cards: Card[],
-  }
+    cards: Card[];
+  };
 }
 
-export interface IActionFetchCardsError extends Action {
+export interface ActionFetchCardsError extends Action {
   type: typeof Actions.FETCH_CARDS_ERROR;
   payload: {
     msg: string;
-  }
+  };
 }
 
-export interface IActionSetCards extends Action {
+export interface ActionSetCards extends Action {
   type: typeof Actions.SET_CARDS;
   payload: {
-    cards: Card[],
-  }
+    cards: Card[];
+  };
 }
 
-export interface IActionUpdateCard extends Action {
+export interface ActionUpdateCard extends Action {
   type: typeof Actions.UPDATE_CARD;
   payload: {
-    card: Card,
-  }
+    card: Card;
+  };
 }
 
 export type ActionTypes =
-  IActionAddCard |
-  IActionDeleteCard |
-  IActionFetchCardsRequest |
-  IActionFetchCardsSuccess |
-  IActionFetchCardsError |
-  IActionSetCards |
-  IActionUpdateCard;
+  | ActionAddCard
+  | ActionDeleteCard
+  | ActionFetchCardsRequest
+  | ActionFetchCardsSuccess
+  | ActionFetchCardsError
+  | ActionSetCards
+  | ActionUpdateCard;
 
-  export type State = {
-    isFetching: boolean;
-    cards: Map<string, Card>;
-  }
-  
-  export type CardsState = Record<State>;
+export type State = {
+  isFetching: boolean;
+  cards: Map<string, Card>;
+};
+
+export type CardsState = Record<State>;

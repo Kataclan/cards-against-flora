@@ -3,8 +3,10 @@ import React from 'react';
 import Main from '../layouts/Main';
 import DeckList from '../features/decks/components/DeckList';
 
-export default () => (
+const Decks = () => (
   <Main>
     <DeckList />
   </Main>
 );
+
+export default Decks;
