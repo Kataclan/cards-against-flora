@@ -1,17 +1,21 @@
-import { Actions, ActionTypes } from './app-types';
-import { combineReducers } from 'redux-immutable';
+import { AppActions, AppActionTypes, AppState } from './app-types';
+import { createReducer } from 'typesafe-actions';
+import { fromJS } from 'immutable';
 
-export const isLoadingReducer = (state = true, action: ActionTypes): boolean => {
-  switch (action.type) {
-    case Actions.START_INIT_APP:
-      return true;
-    case Actions.FINISH_INIT_APP:
-      return false;
-    default:
-      return state;
-  }
-};
+const initialState: AppState = fromJS({
+  isLoading: false,
+  isMenuOpen: false,
+});
 
-export default combineReducers({
-  isLoading: isLoadingReducer,
+const isLoadingReducer = createReducer<AppState, AppActionTypes>(initialState)
+  .handleType(AppActions.START_INIT_APP, state => state.set('isLoading', true))
+  .handleType(AppActions.FINISH_INIT_APP, state => state.set('isLoading', false));
+
+const isMenuOpenReducer = createReducer<AppState, AppActionTypes>(initialState)
+  .handleType(AppActions.OPEN_MENU, state => state.set('isMenuOpen', true))
+  .handleType(AppActions.CLOSE_MENU, state => state.set('isMenuOpen', false));
+
+export default createReducer<AppState, AppActionTypes>(initialState, {
+  ...isLoadingReducer.handlers,
+  ...isMenuOpenReducer.handlers,
 });

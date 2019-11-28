@@ -1,35 +1,37 @@
-import { ActionTypes, Actions, Deck } from './decks-types';
-import { combineReducers } from 'redux-immutable';
-import { Map } from 'immutable';
+import { DecksActionTypes, DecksActions, DecksState } from './decks-types';
+import { Map, fromJS } from 'immutable';
+import { createReducer } from 'typesafe-actions';
 
-export const isFetchingReducer = (state = false, action: ActionTypes): boolean => {
-  switch (action.type) {
-    case Actions.FETCH_DECKS_REQUEST:
-      return true;
-    case Actions.FETCH_DECKS_SUCCESS:
-    case Actions.FETCH_DECKS_ERROR:
-      return false;
-    default:
-      return state;
-  }
-};
+const initialState: DecksState = fromJS({
+  isFetching: false,
+  decks: Map(),
+});
 
-export const decksReducer = (state = Map<string, Deck>(), action: ActionTypes): Map<string, Deck> => {
-  switch (action.type) {
-    case Actions.ADD_DECK:
-    case Actions.UPDATE_DECK:
-      return state.update(action.payload.deck.uid, () => action.payload.deck);
-    case Actions.DELETE_DECK:
-      return state.remove(action.payload.uid);
-    case Actions.FETCH_DECKS_SUCCESS:
-      action.payload.decks.forEach(deck => state.set(deck.uid, deck));
-      return state;
-    default:
-      return state;
-  }
-};
+const isFetchingReducer = createReducer<DecksState, DecksActionTypes>(initialState)
+  .handleType(DecksActions.FETCH_DECKS_REQUEST, state => state.set('isFetching', true))
+  .handleType([DecksActions.FETCH_DECKS_SUCCESS, DecksActions.FETCH_DECKS_ERROR], state =>
+    state.set('isFetching', true),
+  );
 
-export default combineReducers({
-  isFetching: isFetchingReducer,
-  decks: decksReducer,
+const decksReducer = createReducer<DecksState, DecksActionTypes>(initialState)
+  .handleType(DecksActions.FETCH_DECKS_REQUEST, state => state.set('isFetching', true))
+  .handleType(DecksActions.FETCH_DECKS_SUCCESS, (state, action) =>
+    state.setIn(
+      'decks',
+      action.payload.decks.forEach(deck => state.get('decks').set(deck.uid, deck)),
+    ),
+  )
+  .handleType([DecksActions.ADD_DECK, DecksActions.UPDATE_DECK], (state, action) =>
+    state.setIn(
+      'decks',
+      state.get('decks').update(action.payload.deck.uid, () => action.payload.deck),
+    ),
+  )
+  .handleType(DecksActions.DELETE_DECK, (state, action) =>
+    state.setIn('decks', state.get('decks').remove(action.payload.uid)),
+  );
+
+export default createReducer<DecksState, DecksActionTypes>(initialState, {
+  ...isFetchingReducer.handlers,
+  ...decksReducer.handlers,
 });

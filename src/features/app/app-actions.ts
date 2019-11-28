@@ -1,6 +1,10 @@
-import { action } from 'typesafe-actions';
-import { Actions, ActionTypes } from './app-types';
+import { createAction } from 'typesafe-actions';
+import { AppActions } from './app-types';
 
-export const startInitApp = (): ActionTypes => action(Actions.START_INIT_APP, {});
+export const startInitApp = createAction(AppActions.START_INIT_APP)<void>();
 
-export const finishInitApp = (): ActionTypes => action(Actions.FINISH_INIT_APP, {});
+export const finishInitApp = createAction(AppActions.FINISH_INIT_APP)<void>();
+
+export const openMenu = createAction(AppActions.OPEN_MENU)<void>();
+
+export const closeMeny = createAction(AppActions.CLOSE_MENU)<void>();

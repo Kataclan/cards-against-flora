@@ -7,7 +7,7 @@ export interface Deck extends BaseObj {
   freshCards: string[];
 }
 
-export enum Actions {
+export enum DecksActions {
   ADD_DECK = '@@decks/ADD_DECK',
   DELETE_DECK = '@@decks/DELETE_DECK',
   FETCH_DECKS_REQUEST = '@@decks/FETCH_DECKS_REQUEST',
@@ -17,45 +17,45 @@ export enum Actions {
 }
 
 export interface ActionAddDeck extends Action {
-  type: Actions.ADD_DECK;
+  type: DecksActions.ADD_DECK;
   payload: {
     deck: Deck;
   };
 }
 
 export interface ActionDeleteDeck extends Action {
-  type: Actions.DELETE_DECK;
+  type: DecksActions.DELETE_DECK;
   payload: {
     uid: string;
   };
 }
 
 export interface ActionFetchDecksRequest extends Action {
-  type: Actions.FETCH_DECKS_REQUEST;
+  type: DecksActions.FETCH_DECKS_REQUEST;
 }
 
 export interface ActionFetchDecksSuccess extends Action {
-  type: typeof Actions.FETCH_DECKS_SUCCESS;
+  type: typeof DecksActions.FETCH_DECKS_SUCCESS;
   payload: {
     decks: Deck[];
   };
 }
 
 export interface ActionFetchDecksError extends Action {
-  type: typeof Actions.FETCH_DECKS_ERROR;
+  type: typeof DecksActions.FETCH_DECKS_ERROR;
   payload: {
     msg: string;
   };
 }
 
 export interface ActionUpdateDeck extends Action {
-  type: Actions.UPDATE_DECK;
+  type: DecksActions.UPDATE_DECK;
   payload: {
     deck: Deck;
   };
 }
 
-export type ActionTypes =
+export type DecksActionTypes =
   | ActionAddDeck
   | ActionDeleteDeck
   | ActionFetchDecksRequest
@@ -63,9 +63,7 @@ export type ActionTypes =
   | ActionFetchDecksError
   | ActionUpdateDeck;
 
-export type State = {
+export type DecksState = Record<{
   isFetching: boolean;
   decks: Map<string, Deck>;
-};
-
-export type DecksState = Record<State>;
+}>;

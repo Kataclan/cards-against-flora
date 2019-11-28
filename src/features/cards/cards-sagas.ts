@@ -1,6 +1,6 @@
 import { all, call, fork, put, takeEvery } from 'redux-saga/effects';
 import * as actions from './cards-actions';
-import { Actions as ActionTypes, Card, CardTypes } from './cards-types';
+import { CardsActions, Card, CardTypes } from './cards-types';
 
 const fakeError = true;
 const cardsFake: Card[] = [
@@ -22,12 +22,12 @@ const fakeFetch = (): Promise<any> =>
       resolve({
         cards: cardsFake,
       });
-    }, 3000);
+    }, 1000);
   });
 
 function* handleFetch() {
   try {
-    const res = yield call(fakeFetch);
+    const res: any = yield call(fakeFetch);
 
     if (res.error) {
       yield put(actions.fetchCardsError(res.error));
@@ -36,7 +36,7 @@ function* handleFetch() {
     }
   } catch (err) {
     if (err instanceof Error) {
-      yield put(actions.fetchCardsError(err.stack!));
+      yield put(actions.fetchCardsError((err.stack as string).toString()));
     } else {
       yield put(actions.fetchCardsError('An unknown error occured.'));
     }
@@ -46,7 +46,7 @@ function* handleFetch() {
 // This is our watcher function. We use `take*()` functions to watch Redux for a specific action
 // type, and run our saga, for example the `handleFetch()` saga above.
 function* watchFetchRequest() {
-  yield takeEvery(ActionTypes.FETCH_CARDS_REQUEST, handleFetch);
+  yield takeEvery(CardsActions.FETCH_CARDS_REQUEST, handleFetch);
 }
 
 // Export our root saga.

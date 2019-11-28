@@ -24,3 +24,7 @@ export const FlexContainer = styledTS<FlexContainerProps>(styledComponents.div)`
 export const FlexVContainer: React.FC<FlexContainerProps> = props => <FlexContainer {...props} vertical={true} />;
 
 export const FlexHContainer: React.FC<FlexContainerProps> = props => <FlexContainer {...props} vertical={false} />;
+
+export const FlexGrow = styledTS(styledComponents.div)`
+  flex-grow: 1;
+`;

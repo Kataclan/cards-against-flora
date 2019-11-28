@@ -1,14 +1,14 @@
-import { action } from 'typesafe-actions';
-import { Actions, ActionTypes, Deck } from './decks-types';
+import { createAction } from 'typesafe-actions';
+import { DecksActions, Deck } from './decks-types';
 
-export const addDeck = (deck: Deck): ActionTypes => action(Actions.ADD_DECK, { deck: deck });
+export const addDeck = createAction(DecksActions.ADD_DECK)<Deck>();
 
-export const deleteDeck = (uid: string): ActionTypes => action(Actions.DELETE_DECK, { uid: uid });
+export const deleteDeck = createAction(DecksActions.DELETE_DECK)<string>();
 
-export const fetchDecksRequest = (): ActionTypes => action(Actions.FETCH_DECKS_REQUEST, {});
+export const fetchDecksRequest = createAction(DecksActions.FETCH_DECKS_REQUEST)<void>();
 
-export const fetchDecksSuccess = (decks: Deck[]): ActionTypes => action(Actions.FETCH_DECKS_SUCCESS, { decks: decks });
+export const fetchDecksSuccess = createAction(DecksActions.FETCH_DECKS_SUCCESS)<Deck[]>();
 
-export const fetchDecskError = (msg: string): ActionTypes => action(Actions.FETCH_DECKS_ERROR, { msg: msg });
+export const fetchDecksError = createAction(DecksActions.FETCH_DECKS_ERROR)<string>();
 
-export const updateDeck = (deck: Deck): ActionTypes => action(Actions.UPDATE_DECK, { deck: deck });
+export const updateDeck = createAction(DecksActions.UPDATE_DECK)<Deck>();

@@ -1,4 +1,6 @@
 import React, { FC } from 'react';
+import ActionBar from '../components/ActionBar';
+import AppBar from '../components/AppBar';
 
 type Props = {
   renderActionsMenu?: () => JSX.Element;
@@ -6,8 +8,9 @@ type Props = {
 
 const Main: FC<Props> = ({ children }) => (
   <div className="App">
-    <header className="App-header">DEMO APP</header>
+    <AppBar />
     <main className="App-main">{children}</main>
+    <ActionBar />
   </div>
 );
 

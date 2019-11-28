@@ -1,14 +1,14 @@
-import { action } from 'typesafe-actions';
-import { Actions, ActionTypes, Card } from './cards-types';
+import { createAction } from 'typesafe-actions';
+import { CardsActions, Card } from './cards-types';
 
-export const addCard = (card: Card): ActionTypes => action(Actions.ADD_CARD, { card: card });
+export const addCard = createAction(CardsActions.ADD_CARD)<Card>();
 
-export const deleteCard = (uid: string): ActionTypes => action(Actions.DELETE_CARD, { uid: uid });
+export const deleteCard = createAction(CardsActions.DELETE_CARD)<string>();
 
-export const fetchCardsRequest = (): ActionTypes => action(Actions.FETCH_CARDS_REQUEST, {});
+export const fetchCardsRequest = createAction(CardsActions.FETCH_CARDS_REQUEST)<void>();
 
-export const fetchCardsSuccess = (cards: Card[]): ActionTypes => action(Actions.FETCH_CARDS_SUCCESS, { cards: cards });
+export const fetchCardsSuccess = createAction(CardsActions.FETCH_CARDS_SUCCESS)<Card[]>();
 
-export const fetchCardsError = (msg: string): ActionTypes => action(Actions.FETCH_CARDS_ERROR, { msg: msg });
+export const fetchCardsError = createAction(CardsActions.FETCH_CARDS_ERROR)<string>();
 
-export const updateCard = (card: Card): ActionTypes => action(Actions.UPDATE_CARD, { card: card });
+export const updateCard = createAction(CardsActions.UPDATE_CARD)<Card>();

@@ -7,14 +7,14 @@ describe('App Actions', () => {
     {
       action: actions.startInitApp,
       expectedAction: {
-        type: types.Actions.START_INIT_APP,
+        type: types.AppActions.START_INIT_APP,
       },
     },
     // FINISH_INIT_APP ACTION
     {
       action: actions.finishInitApp,
       expectedAction: {
-        type: types.Actions.FINISH_INIT_APP,
+        type: types.AppActions.FINISH_INIT_APP,
       },
     },
   ].forEach(({ action, expectedAction }) => {

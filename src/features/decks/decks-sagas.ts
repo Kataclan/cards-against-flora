@@ -1,7 +1,7 @@
 import { all, call, fork, put, takeEvery } from 'redux-saga/effects';
 import * as actions from './decks-actions';
 // import { API_ROOT_URL } from '../../store/utils';
-import { Actions as ActionTypes } from './decks-types';
+import { DecksActions as ActionTypes } from './decks-types';
 
 // const DECKS_ENDPOINT =
 //   `${process.env.REACT_APP_API_ENDPOINT}/decks` ||
@@ -20,7 +20,7 @@ const fakeFetch = (): Promise<any> =>
       resolve({
         decks: fakeDecks,
       });
-    }, 4000);
+    }, 1000);
   });
 
 function* handleFetch() {
@@ -28,15 +28,15 @@ function* handleFetch() {
     const res = yield call(fakeFetch);
 
     if (res.error) {
-      yield put(actions.fetchDecskError(res.error));
+      yield put(actions.fetchDecksError(res.error));
     } else {
       yield put(actions.fetchDecksSuccess(res.decks));
     }
   } catch (err) {
     if (err instanceof Error) {
-      yield put(actions.fetchDecskError(err.stack!));
+      yield put(actions.fetchDecksError(err.stack!));
     } else {
-      yield put(actions.fetchDecskError('An unknown error occured.'));
+      yield put(actions.fetchDecksError('An unknown error occured.'));
     }
   }
 }
