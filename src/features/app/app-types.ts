@@ -4,8 +4,7 @@ import { Record } from 'immutable';
 export enum AppActions {
   START_INIT_APP = '@@app/START_INIT_APP',
   FINISH_INIT_APP = '@@app/FINISH_INIT_APP',
-  OPEN_MENU = '@@app/OPEN_MENU',
-  CLOSE_MENU = '@@app/CLOSE_MENU',
+  CHANGE_CURRENT_TAB = '@@app/CHANGE_CURRENT_TAB',
 }
 
 export interface ActionStartInitApp extends Action {
@@ -16,17 +15,19 @@ export interface ActionFinishInitApp extends Action {
   type: AppActions.FINISH_INIT_APP;
 }
 
-export interface ActionCloseMenu extends Action {
-  type: AppActions.CLOSE_MENU;
+export interface ActionChangeCurrentTab extends Action {
+  type: AppActions.CHANGE_CURRENT_TAB;
+  payload: AppTab;
 }
 
-export interface ActionOpenMenu extends Action {
-  type: AppActions.OPEN_MENU;
-}
+export type AppActionTypes = ActionStartInitApp | ActionFinishInitApp | ActionChangeCurrentTab;
 
-export type AppActionTypes = ActionStartInitApp | ActionFinishInitApp | ActionCloseMenu | ActionOpenMenu;
+export enum AppTab {
+  Cards = 0,
+  Decks,
+}
 
 export type AppState = Record<{
   isLoading: boolean;
-  isMenuOpen: boolean;
+  currentTab: AppTab;
 }>;

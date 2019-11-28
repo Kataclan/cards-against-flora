@@ -4,6 +4,7 @@ import * as serviceWorker from './serviceWorker';
 
 import { MuiThemeProvider } from '@material-ui/core';
 import theme from './mui-theme';
+import './index.css';
 
 import AppRouter from './router';
 

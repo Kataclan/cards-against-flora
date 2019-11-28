@@ -2,7 +2,6 @@ import { all, call, fork, put, takeEvery } from 'redux-saga/effects';
 import * as actions from './cards-actions';
 import { CardsActions, Card, CardTypes } from './cards-types';
 
-const fakeError = true;
 const cardsFake: Card[] = [
   { uid: '1', type: CardTypes.Fresh, fillingTxt: 'FreshCard 1' },
   { uid: '2', type: CardTypes.Fresh, fillingTxt: 'FreshCard 2' },
@@ -14,15 +13,12 @@ const cardsFake: Card[] = [
 ];
 
 const fakeFetch = (): Promise<any> =>
-  new Promise((resolve, reject) => {
+  new Promise(resolve => {
     setTimeout(() => {
-      if (fakeError) {
-        reject('ERROR FETCHING CARDS');
-      }
       resolve({
         cards: cardsFake,
       });
-    }, 1000);
+    }, 2000);
   });
 
 function* handleFetch() {

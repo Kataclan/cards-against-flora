@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { styled } from '@material-ui/core/styles';
-import { AppBar as MuiAppBar, Toolbar, IconButton, Fab } from '@material-ui/core';
+import { AppBar as MuiAppBar, Toolbar, Fab } from '@material-ui/core';
 
-import MenuIcon from '@material-ui/icons/Menu';
 import AddIcon from '@material-ui/icons/Add';
 import { FlexGrow } from './FlexContainers';
 
@@ -23,9 +22,6 @@ const FabButton = styled(Fab)({
 const ActionBar = () => (
   <AppBar position="fixed" color="primary">
     <Toolbar>
-      <IconButton edge="start" color="inherit" aria-label="open drawer">
-        <MenuIcon />
-      </IconButton>
       <FabButton color="secondary" aria-label="add">
         <AddIcon />
       </FabButton>

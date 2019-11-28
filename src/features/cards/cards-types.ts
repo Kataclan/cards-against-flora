@@ -29,16 +29,12 @@ export enum CardsActions {
 
 export interface ActionAddCard {
   type: typeof CardsActions.ADD_CARD;
-  payload: {
-    card: Card;
-  };
+  payload: Card;
 }
 
 export interface ActionDeleteCard {
   type: typeof CardsActions.DELETE_CARD;
-  payload: {
-    uid: string;
-  };
+  payload: string;
 }
 
 export interface ActionFetchCardsRequest {
@@ -47,30 +43,22 @@ export interface ActionFetchCardsRequest {
 
 export interface ActionFetchCardsSuccess {
   type: typeof CardsActions.FETCH_CARDS_SUCCESS;
-  payload: {
-    cards: Card[];
-  };
+  payload: Card[];
 }
 
 export interface ActionFetchCardsError {
   type: typeof CardsActions.FETCH_CARDS_ERROR;
-  payload: {
-    msg: string;
-  };
+  payload: string;
 }
 
 export interface ActionSetCards {
   type: typeof CardsActions.SET_CARDS;
-  payload: {
-    cards: Card[];
-  };
+  payload: Card[];
 }
 
 export interface ActionUpdateCard {
   type: typeof CardsActions.UPDATE_CARD;
-  payload: {
-    card: Card;
-  };
+  payload: Card;
 }
 
 export type CardsActionTypes =

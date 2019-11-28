@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import Main from '../layouts/Main';
 import * as appSelectors from '../features/app/app-selectors';
-import { LoadingComponent } from '../components/LoadingFlower';
+import LoadingFlower from '../components/LoadingFlower';
 
 const mapStateToProps = (state: State) => {
   return {
@@ -15,6 +15,6 @@ const mapStateToProps = (state: State) => {
 type Props = ReturnType<typeof mapStateToProps>;
 
 const Home: React.FC<Props> = (props: Props) =>
-  props.isLoadingApp ? <LoadingComponent full={true} /> : <Main>HOME</Main>;
+  props.isLoadingApp ? <LoadingFlower full={true} /> : <Main>HOME</Main>;
 
 export default connect(mapStateToProps)(Home);

@@ -1,6 +1,7 @@
 import { CardsActionTypes, CardsActions, CardsState } from './cards-types';
 import { Map, fromJS } from 'immutable';
 import { createReducer } from 'typesafe-actions';
+import { createMapFromArray } from '../../store/utils';
 
 const initialState: CardsState = fromJS({
   isFetching: false,
@@ -9,26 +10,21 @@ const initialState: CardsState = fromJS({
 
 const isFetchingReducer = createReducer<CardsState, CardsActionTypes>(initialState)
   .handleType(CardsActions.FETCH_CARDS_REQUEST, state => state.set('isFetching', true))
-  .handleType([CardsActions.FETCH_CARDS_SUCCESS, CardsActions.FETCH_CARDS_ERROR], state =>
-    state.set('isFetching', true),
-  );
+  .handleType(CardsActions.FETCH_CARDS_SUCCESS, state => state.set('isFetching', false))
+  .handleType(CardsActions.FETCH_CARDS_ERROR, state => state.set('isFetching', false));
 
 const cardsReducer = createReducer<CardsState, CardsActionTypes>(initialState)
-  .handleType(CardsActions.FETCH_CARDS_REQUEST, state => state.set('isFetching', true))
   .handleType(CardsActions.FETCH_CARDS_SUCCESS, (state, action) =>
-    state.setIn(
-      'cards',
-      action.payload.cards.forEach(card => state.get('cards').set(card.uid, card)),
-    ),
+    state.setIn(['cards'], createMapFromArray(action.payload)),
   )
   .handleType([CardsActions.ADD_CARD, CardsActions.UPDATE_CARD], (state, action) =>
     state.setIn(
-      'cards',
-      state.get('cards').update(action.payload.card.uid, () => action.payload.card),
+      ['cards'],
+      state.get('cards').update(action.payload.uid, () => action.payload),
     ),
   )
   .handleType(CardsActions.DELETE_CARD, (state, action) =>
-    state.setIn('cards', state.get('cards').remove(action.payload.uid)),
+    state.setIn(['cards'], state.get('cards').remove(action.payload)),
   );
 
 export default createReducer<CardsState, CardsActionTypes>(initialState, {
