@@ -1,8 +1,20 @@
 # cards-against-flora
- This is a solution for Colvin's test.
+
+App Description
+============================
+
+The main idea is to create an app that allows us to create several Cards Agains Flora Game Decks. Like in Cards Agains Humanity game decks, each card in a Cards Agains Flora's deck can contain both Rotten Cards (as Black Cards in CAH) and Fresh Cards (as White Cards in CAH). The user can create cards, and assign those cards to its previous created decks. Then, it can download or export its decks to print & play!
+
+The app has 2 main views, Cards and Decks (this last is disabled until Cards is finished). On Cards view, you will be able to view all your cards, create a new one and select an existing and edit, delete or it. You can achieve this actions tappint in the floating action buttons that will appear on the bottom of the page.
+
+There's my first approach of App Layout:
+
+![Image description](/public/demoImg.png)
 
 Project status
 ============================
+
+From now, there's a single app page that loads initial data and lands to Cards page. The
 
 - [ ] Features
   - [x] Add immutability to the State
@@ -99,10 +111,6 @@ Other scripts:
 - `npm run test:tsc` ---> Runs jest TS tests
 - `npm run lint` --> Runs linter
 
-
-### App Description
-
-The main idea is to create an app that allows us to create several Cards Agains Flora Game Decks. Like in Cards Agains Humanity game decks, each card in a Cards Agains Flora's deck can contain both Rotten Cards (as Black Cards in CAH) and Fresh Cards (as White Cards in CAH). The user can create cards, and assign those cards to its previous created decks. Then, it can download or export its decks to print & play!
 
 ### 3rd party libraries
 
