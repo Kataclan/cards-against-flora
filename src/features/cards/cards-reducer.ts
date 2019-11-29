@@ -1,11 +1,11 @@
-import { CardsActionTypes, CardsActions, CardsState } from './cards-types';
+import { CardsActionTypes, CardsActions, CardsState, Card } from './cards-types';
 import { Map, fromJS } from 'immutable';
 import { createReducer } from 'typesafe-actions';
 import { createMapFromArray } from '../../store/utils';
 
 const initialState: CardsState = fromJS({
   isFetching: false,
-  cards: Map(),
+  cards: Map<string, Card>(),
   selectedCard: '',
 });
 
@@ -20,14 +20,23 @@ const cardsReducer = createReducer<CardsState, CardsActionTypes>(initialState)
       cards: createMapFromArray(action.payload),
     }),
   )
-  .handleType([CardsActions.ADD_CARD, CardsActions.UPDATE_CARD], (state, action) =>
+  .handleType(CardsActions.ADD_CARD, (state, action) =>
     state.setIn(
       ['cards'],
       state.get('cards').update(action.payload.uid, () => action.payload),
     ),
   )
+  .handleType(CardsActions.UPDATE_CARD, (state, action) =>
+    state.merge({
+      selectedCard: '',
+      cards: state.get('cards').update(action.payload.uid, () => action.payload),
+    }),
+  )
   .handleType(CardsActions.DELETE_CARD, (state, action) =>
-    state.setIn(['cards'], state.get('cards').remove(action.payload)),
+    state.merge({
+      selectedCard: '',
+      cards: state.get('cards').remove(action.payload),
+    }),
   );
 
 const selectCardReducer = createReducer<CardsState, CardsActionTypes>(initialState).handleType(

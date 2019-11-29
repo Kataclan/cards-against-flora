@@ -5,4 +5,6 @@ declare interface Window {
 
 declare interface BaseObj {
   uid: string;
+  dateAdded: Date;
+  dateModified?: Date;
 }

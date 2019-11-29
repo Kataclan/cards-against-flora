@@ -26,9 +26,18 @@ const CardList: React.FC<ListProps> = ({ cards, selectedCardId, onClickCard }) =
     <EmptyPage txt={`There's no cards created yet`} />
   ) : (
     <ItemList
-      items={cards.toIndexedSeq().toArray()}
-      itemRenderer={item => (
-        <CardListItem onClickCard={onClickCard} card={item} isSelected={item.uid === selectedCardId} />
+      items={cards
+        .sortBy(f => f.dateAdded)
+        .reverse()
+        .toIndexedSeq()
+        .toArray()}
+      itemRenderer={(item, index) => (
+        <CardListItem
+          key={`card-list-item-${index}`}
+          onClickCard={onClickCard}
+          card={item}
+          isSelected={item.uid === selectedCardId}
+        />
       )}
     />
   );

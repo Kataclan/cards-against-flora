@@ -11,7 +11,12 @@ The app has 2 main views, Cards and Decks (this last is disabled until Cards is 
 Project status
 ============================
 
-When you run the app, a loading gif appears until a promise is resolved. that promise mocks fetching cards from database. When this cards are loaded, then you are redirected to /cards to see the Cards List. From now, you can select an existing card and delete it.
+When you run the app, a loading gif appears until a promise is resolved. that promise mocks fetching cards from database. When this cards are loaded, then you are redirected to /cards to see the Cards List.
+
+Available features: 
+ - Add card.
+ - Delete card.
+ - Edit card.
 
 - [ ] Features
   - [x] Add immutability to the State

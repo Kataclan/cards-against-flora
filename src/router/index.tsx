@@ -8,7 +8,7 @@ import configureStore from '../store';
 import { createBrowserHistory } from 'history';
 
 import App from '../pages/App';
-import Cards from '../pages/cards/Cards';
+import Cards from '../pages/Cards';
 
 export const history = createBrowserHistory();
 export const store = configureStore(history);
@@ -20,7 +20,7 @@ class AppRouter extends Component {
         <ConnectedRouter history={history}>
           <Switch>
             <Route exact path={getPath('home')} component={App} />
-            <Route exact path={getPath('cards')} component={Cards} />
+            <Route path={getPath('cards')} component={Cards} />
           </Switch>
         </ConnectedRouter>
       </Provider>

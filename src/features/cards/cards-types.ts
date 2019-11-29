@@ -1,21 +1,22 @@
 import { Map, Record } from 'immutable';
+import { Action } from 'typesafe-actions';
 
 export enum CardTypes {
-  Fresh,
-  Rotten,
+  Fresh = 'Fresh',
+  Rotten = 'Rotten',
 }
 
 export interface FreshCard extends BaseObj {
   __type: CardTypes.Fresh;
-  fillingTxt: string;
 }
 
 export interface RottenCard extends BaseObj {
   __type: CardTypes.Rotten;
-  declarationTxt: string;
 }
 
-export type Card = FreshCard | RottenCard;
+export type Card = (FreshCard | RottenCard) & {
+  text: string;
+};
 
 export enum CardsActions {
   ADD_CARD = '@@cards/ADD_CARD',
@@ -27,7 +28,7 @@ export enum CardsActions {
   UPDATE_CARD = '@@cards/UPDATE_CARD',
 }
 
-export interface ActionAddCard {
+export interface ActionAddCard extends Action {
   type: typeof CardsActions.ADD_CARD;
   payload: Card;
 }

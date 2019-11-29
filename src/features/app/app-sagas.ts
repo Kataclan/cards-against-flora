@@ -1,5 +1,5 @@
 import { call, put, take, takeEvery } from 'redux-saga/effects';
-import { history } from '../../router';
+import { push } from 'connected-react-router/immutable';
 
 import * as appActions from '../app/app-actions';
 // import * as decksActions from '../decks/decks-actions';
@@ -28,15 +28,11 @@ export function* watchChangeTab() {
   yield takeEvery(AppActions.CHANGE_CURRENT_TAB, changeCurrentTab);
 }
 
-export function forwardTo(path: string) {
-  history.push(path);
-}
-
 // Call init app on saga load
 export function* AppSaga() {
   yield put(appActions.startInitApp());
   yield call(fetchInitialData);
   yield call(watchInitialData);
   yield put(appActions.finishInitApp());
-  yield call(forwardTo, '/cards');
+  yield put(push('/cards'));
 }

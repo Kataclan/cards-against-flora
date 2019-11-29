@@ -14,7 +14,6 @@ const AppTabs: React.FC<AppTabsProps> = ({ currentTab, onChangeTab }) => (
     <Tabs
       value={currentTab.valueOf()}
       onChange={(e, v) => {
-        console.log(currentTab);
         onChangeTab(v);
       }}
       indicatorColor="primary"

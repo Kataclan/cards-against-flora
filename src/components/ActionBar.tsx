@@ -10,8 +10,8 @@ import { State } from '../store/types';
 import { FlexGrow } from './FlexContainers';
 import * as cardsActions from '../features/cards/cards-actions';
 import { getSelectedCardId } from '../features/cards/cards-selectors';
-import { FabDelete } from './AppFabs';
-import { fromJS } from 'immutable';
+import { push } from 'connected-react-router/immutable';
+import { FabAdd, FabDelete, FabEdit } from './AppFabs';
 
 const StyledActionBar = styledMui(MuiAppBar)({
   position: 'relative',
@@ -36,9 +36,9 @@ const mapStateToProps = (state: State) => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  onClickAdd: () => dispatch(cardsActions.addCard(fromJS({}))),
+  onClickAdd: () => dispatch(push('/cards/create')),
   onClickDelete: (cardId: string) => dispatch(cardsActions.deleteCard(cardId)),
-  onClickEdit: () => dispatch(cardsActions.updateCard(fromJS({}))),
+  onClickEdit: () => dispatch(push('/cards/edit')),
 });
 
 type ActionBarProps = ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps>;
@@ -47,13 +47,14 @@ const ActionBar: React.FC<ActionBarProps> = ({ selectedCardId, onClickAdd, onCli
   <StyledActionBar>
     <Toolbar>
       <ActionButtonsContainer>
-        {/* <FabAdd key="fab-add" onClickAction={() => onClickAdd()} /> */}
-        {selectedCardId !== ''
-          ? [
-              // <FabEdit key="fab-edit" onClickAction={() => onClickEdit()} />,
-              <FabDelete key="fab-delete" onClickAction={() => onClickDelete(selectedCardId)} />,
-            ]
-          : null}
+        {selectedCardId !== '' ? (
+          [
+            <FabEdit key="fab-edit" onClick={onClickEdit} />,
+            <FabDelete key="fab-delete" onClick={() => onClickDelete(selectedCardId)} />,
+          ]
+        ) : (
+          <FabAdd onClick={onClickAdd} />
+        )}
       </ActionButtonsContainer>
       <FlexGrow />
     </Toolbar>

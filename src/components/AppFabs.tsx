@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Fab } from '@material-ui/core';
-import { FabProps as MuiFabProps } from '@material-ui/core/Fab';
 import { styled as styledMui } from '@material-ui/core/styles';
 
 import AddIcon from '@material-ui/icons/Add';
@@ -13,28 +12,28 @@ export enum Fabs {
   DELETE = 'DELETE',
 }
 
-type FabProps = MuiFabProps & {
-  onClickAction: () => any;
+type FabProps = {
+  onClick: (e: any) => any;
 };
 
 const FabWithMargin = styledMui(Fab)({
   marginRight: 10,
 });
 
-const FabAdd: React.FC<FabProps> = props => (
-  <FabWithMargin {...props} color="secondary" aria-label="add" onClick={() => props.onClickAction()}>
+const FabAdd: React.FC<FabProps> = ({ onClick }) => (
+  <FabWithMargin color="secondary" aria-label="add" onClick={onClick}>
     <AddIcon />
   </FabWithMargin>
 );
 
-const FabEdit: React.FC<FabProps> = props => (
-  <FabWithMargin {...props} color="secondary" aria-label="edit" onClick={() => props.onClickAction()}>
+const FabEdit: React.FC<FabProps> = ({ onClick }) => (
+  <FabWithMargin color="secondary" aria-label="edit" onClick={onClick}>
     <EditIcon />
   </FabWithMargin>
 );
 
-const FabDelete: React.FC<FabProps> = props => (
-  <Fab {...props} color="secondary" aria-label="delete" onClick={() => props.onClickAction()}>
+const FabDelete: React.FC<FabProps> = ({ onClick }) => (
+  <Fab color="secondary" aria-label="delete" onClick={onClick}>
     <DeleteIcon />
   </Fab>
 );
