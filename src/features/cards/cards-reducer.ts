@@ -32,7 +32,7 @@ const cardsReducer = createReducer<CardsState, CardsActionTypes>(initialState)
 
 const selectCardReducer = createReducer<CardsState, CardsActionTypes>(initialState).handleType(
   CardsActions.SELECT_CARD,
-  (state, action) => state.set('selectedCard', action.payload),
+  (state, action) => state.set('selectedCard', action.payload === state.get('selectedCard') ? '' : action.payload),
 );
 
 export default createReducer<CardsState, CardsActionTypes>(initialState, {
