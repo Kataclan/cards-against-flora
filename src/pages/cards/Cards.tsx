@@ -1,23 +1,30 @@
-import { State } from '../../store/types';
 import React from 'react';
 import { connect } from 'react-redux';
 
-import Main from '../../layouts/Main';
+import { State } from '../../store/types';
 import * as cardsSelectors from '../../features/cards/cards-selectors';
-// import LoadingFLower from '../../components/LoadingFlower';
-import CardList from '../../features/cards/components/CardList';
 
-const mapStateToProps = (state: State) => {
-  return {
-    isFetchingCards: cardsSelectors.getIsFetchingCards(state),
-  };
-};
+import CardList from '../../features/cards/components/CardList';
+import LoadingFlower from '../../components/LoadingFlower';
+import Main from '../../layouts/Main';
+import { FlexHContainer } from '../../components/FlexContainers';
+
+const mapStateToProps = (state: State) => ({
+  isFetchingCards: cardsSelectors.getIsFetchingCards(state),
+});
 
 type Props = ReturnType<typeof mapStateToProps>;
 
 const CardsPage: React.FC<Props> = ({ isFetchingCards }) => (
-  // <Main>{isFetchingCards ? <LoadingFLower full={true} /> : <CardList />}</Main>
-  <Main>{<CardList />}</Main>
+  <Main>
+    {isFetchingCards ? (
+      <LoadingFlower />
+    ) : (
+      <FlexHContainer full={true} overflow={'auto'} flexWrap={'wrap'}>
+        <CardList />
+      </FlexHContainer>
+    )}
+  </Main>
 );
 
 export default connect(mapStateToProps)(CardsPage);

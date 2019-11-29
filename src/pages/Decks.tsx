@@ -1,12 +1,7 @@
 import React from 'react';
 
-import Main from '../layouts/Main';
 import DeckList from '../features/decks/components/DeckList';
 
-const Decks = () => (
-  <Main>
-    <DeckList />
-  </Main>
-);
+const Decks = () => <DeckList />;
 
 export default Decks;

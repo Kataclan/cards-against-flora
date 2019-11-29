@@ -11,4 +11,6 @@ export const fetchCardsSuccess = createAction(CardsActions.FETCH_CARDS_SUCCESS)<
 
 export const fetchCardsError = createAction(CardsActions.FETCH_CARDS_ERROR)<string>();
 
+export const selectCard = createAction(CardsActions.SELECT_CARD)<string>();
+
 export const updateCard = createAction(CardsActions.UPDATE_CARD)<Card>();

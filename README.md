@@ -7,14 +7,11 @@ The main idea is to create an app that allows us to create several Cards Agains 
 
 The app has 2 main views, Cards and Decks (this last is disabled until Cards is finished). On Cards view, you will be able to view all your cards, create a new one and select an existing and edit, delete or it. You can achieve this actions tappint in the floating action buttons that will appear on the bottom of the page.
 
-There's my first approach of App Layout:
-
-![Image description](/public/demoImg.png)
 
 Project status
 ============================
 
-From now, there's a single app page that loads initial data and lands to Cards page. The
+When you run the app, a loading gif appears until a promise is resolved. that promise mocks fetching cards from database. When this cards are loaded, then you are redirected to /cards to see the Cards List. From now, you can select an existing card and delete it.
 
 - [ ] Features
   - [x] Add immutability to the State

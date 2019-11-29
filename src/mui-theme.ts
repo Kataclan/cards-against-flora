@@ -8,4 +8,7 @@ export default createMuiTheme({
       primary: '#FFFFFF',
     },
   },
+  typography: {
+    fontFamily: 'Tomorrow',
+  },
 });

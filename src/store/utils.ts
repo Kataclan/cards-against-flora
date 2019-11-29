@@ -7,7 +7,7 @@ export const composeEnhancers =
 export const API_ROOT_URL = 'http://localhost:3000';
 
 export function createMapFromArray<T extends BaseObj>(array: T[]) {
-  const map = Map<string, T>();
-  array.forEach(item => map.set(item.uid, item));
+  let map = Map<string, T>();
+  array.forEach(item => (map = map.set(item.uid, item)));
   return map;
 }

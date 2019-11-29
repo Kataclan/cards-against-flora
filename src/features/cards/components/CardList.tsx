@@ -1,34 +1,36 @@
 import { State } from '../../../store/types';
 import React from 'react';
 import { connect } from 'react-redux';
+import { Dispatch } from 'redux';
 
 import * as selectors from '../cards-selectors';
+import * as actions from '../cards-actions';
 
 import { ItemList } from '../../../components/ItemList';
-import { FlexVContainer } from '../../../components/FlexContainers';
 import EmptyPage from '../../../components/EmptyPage';
-import { Card } from '../cards-types';
+import CardListItem from './CardListItem';
 
 const mapStateToProps = (state: State) => ({
   cards: selectors.getCards(state),
+  selectedCardId: selectors.getSelectedCardId(state),
 });
 
-const dispatchProps = {};
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  onClickCard: (cardId: string) => dispatch(actions.selectCard(cardId)),
+});
 
-type ListProps = ReturnType<typeof mapStateToProps> & typeof dispatchProps;
+type ListProps = ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps>;
 
-const CardListItem: React.FC<Card> = card => <div>{card.uid}</div>;
-
-const CardList: React.FC<ListProps> = ({ cards }) => {
-  if (cards.count() === 0) {
-    return <EmptyPage txt={`There's no cards created yet`} />;
-  }
-
-  return (
-    <FlexVContainer>
-      <ItemList items={cards.toIndexedSeq().toArray()} itemRenderer={CardListItem} />
-    </FlexVContainer>
+const CardList: React.FC<ListProps> = ({ cards, selectedCardId, onClickCard }) =>
+  cards.count() === 0 ? (
+    <EmptyPage txt={`There's no cards created yet`} />
+  ) : (
+    <ItemList
+      items={cards.toIndexedSeq().toArray()}
+      itemRenderer={item => (
+        <CardListItem onClickCard={onClickCard} card={item} isSelected={item.uid === selectedCardId} />
+      )}
+    />
   );
-};
 
-export default connect(mapStateToProps, dispatchProps)(CardList);
+export default connect(mapStateToProps, mapDispatchToProps)(CardList);

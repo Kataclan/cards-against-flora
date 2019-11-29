@@ -6,12 +6,12 @@ export enum CardTypes {
 }
 
 export interface FreshCard extends BaseObj {
-  type: typeof CardTypes.Fresh;
+  __type: CardTypes.Fresh;
   fillingTxt: string;
 }
 
 export interface RottenCard extends BaseObj {
-  type: typeof CardTypes.Rotten;
+  __type: CardTypes.Rotten;
   declarationTxt: string;
 }
 
@@ -23,7 +23,7 @@ export enum CardsActions {
   FETCH_CARDS_REQUEST = '@@cards/FETCH_CARDS_REQUEST',
   FETCH_CARDS_SUCCESS = '@@cards/FETCH_CARDS_SUCCESS',
   FETCH_CARDS_ERROR = '@@cards/FETCH_CARDS_ERROR',
-  SET_CARDS = '@@cards/SET_CARDS',
+  SELECT_CARD = '@@cards/SELECT_CARD',
   UPDATE_CARD = '@@cards/UPDATE_CARD',
 }
 
@@ -51,9 +51,9 @@ export interface ActionFetchCardsError {
   payload: string;
 }
 
-export interface ActionSetCards {
-  type: typeof CardsActions.SET_CARDS;
-  payload: Card[];
+export interface ActionSelectCard {
+  type: typeof CardsActions.SELECT_CARD;
+  payload: string;
 }
 
 export interface ActionUpdateCard {
@@ -67,10 +67,11 @@ export type CardsActionTypes =
   | ActionFetchCardsRequest
   | ActionFetchCardsSuccess
   | ActionFetchCardsError
-  | ActionSetCards
+  | ActionSelectCard
   | ActionUpdateCard;
 
 export type CardsState = Record<{
   isFetching: boolean;
   cards: Map<string, Card>;
+  selectedCard: string;
 }>;

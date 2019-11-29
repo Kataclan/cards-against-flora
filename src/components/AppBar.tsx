@@ -13,15 +13,13 @@ import AppTabs from './AppTabs';
 import { TypoAppTitle } from './Typographies';
 
 const AppBarStyled = styled(MuiAppBar)({
-  position: 'fixed',
+  position: 'relative',
   paddingTop: 10,
 });
 
-const mapStateToProps = (state: State) => {
-  return {
-    currentTab: appSelectors.getCurrentTab(state),
-  };
-};
+const mapStateToProps = (state: State) => ({
+  currentTab: appSelectors.getCurrentTab(state),
+});
 
 const mapDispatchToProps = (dispatch: Dispatch<RootAction>) => ({
   onChangeTab: (tab: AppTab) => dispatch(appActions.changeCurrentTab(tab)),
