@@ -1,0 +1,1 @@
+{"version":3,"sources":["index.css"],"names":[],"mappings":"AAAA,UACE,QAAS,CACT,YAEF,CAEA,gBAHE,oBAQF,CALA,MACE,YAAa,CACb,qBAAsB,CACtB,WAEF","file":"main.543d86b3.chunk.css","sourcesContent":["html, body {\n  margin: 0;\n  height: 100vh;\n  font-family: 'Tomorrow';\n}\n\n#root {\n  display: flex; \n  flex-direction: column; \n  height: 100%;\n  font-family: 'Tomorrow';\n}"]}

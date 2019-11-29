@@ -5,61 +5,20 @@ App Description
 
 The main idea is to create an app that allows us to create several Cards Agains Flora Game Decks. Like in Cards Agains Humanity game decks, each card in a Cards Agains Flora's deck can contain both Rotten Cards (as Black Cards in CAH) and Fresh Cards (as White Cards in CAH). The user can create cards, and assign those cards to its previous created decks. Then, it can download or export its decks to print & play!
 
-The app has 2 main views, Cards and Decks (this last is disabled until Cards is finished). On Cards view, you will be able to view all your cards, create a new one and select an existing and edit, delete or it. You can achieve this actions tappint in the floating action buttons that will appear on the bottom of the page.
+The app has 2 main views, Cards and Decks (this last is disabled until Cards is finished). On Cards view, you will be able to view all your cards, create a new one and select an existing and edit, delete or it. You can achieve this actions tapping in the floating action buttons that will appear on the bottom of the page.
 
-
-Project status
+Demo
 ============================
+https://kataclan.github.io/
 
-When you run the app, a loading gif appears until a promise is resolved. that promise mocks fetching cards from database. When this cards are loaded, then you are redirected to /cards to see the Cards List.
 
-Available features: 
+Available features:
+ - React Router for navigation.
+ - Load initial data.
  - Add card.
  - Delete card.
  - Edit card.
 
-- [ ] Features
-  - [x] Add immutability to the State
-  - [x] Router
-  - [x] App:
-    - [x] Reducer
-    - [x] Actions
-    - [x] Types
-    - [x] Sagas
-    - [x] Selectors
-  - [ ] Decks:
-    - [x] Reducer
-    - [x] Actions
-    - [x] Types
-    - [ ] Sagas: Fetch & CRUD
-    - [ ] Selectors
-  - [ ] Cards:
-    - [x] Reducer
-    - [x] Actions
-    - [x] Types
-    - [ ] Sagas: Fetch & CRUD
-    - [ ] Selectors
-
-- [ ] Initialization
-  - [x] Home page. Loading GIF while loading initial data.
-  - [x] Loading fake inital data
-  - [ ] Loading inital data from API.
-
-- [ ] Router
-  - [x] Home
-  - [ ] Navigation Menu
-  - [ ] Decks: details, CRUD, Export
-  - [ ] Cards: details, CRUD, Export
-
-- [ ] Components
-  - [ ] Decks: Details, List, Form
-  - [ ] Cards: Details, List, Form
-
-- [ ] Development
-  - [x] Linter
-  - [ ] Material-UI
-  
-- [ ] Tests
 
 Folder Structure Explanation
 ============================
@@ -114,7 +73,7 @@ Other scripts:
 - `npm run lint` --> Runs linter
 
 
-### 3rd party libraries
+### Libraries
 
 This project is coded in TypeScript, and it comes from a `create-react-app`. I've been asked for using the following libraries:
   - react
@@ -132,11 +91,16 @@ I've also used this libraries:
   - typesafe-actions (for typing actions)
   - redux-logger (console logger for redux actions)
 
+In CardModal component under cards feature folder, I used new React Hooks API to handle the state of the form.
+
 For linting and 'prettify' the code, I added esling with typescript pluggin and Prettier, and also a git hook on pre-commit 
 to run this linter before commiting files.
 
 For styling, I used styled-components mixed with React Material UI, with provides me a simple way to do the UI for this project.
 
+### Project status
+
+When you run the app, a loading gif appears until a promise is resolved. That promise mocks fetching cards from database. When this cards are loaded, then you are redirected to /cards to see the Cards List.
 
 ### License information
 
